@@ -41,18 +41,16 @@ export async function getProjectById(id: string) {
   } catch (error) {
     console.log('❌ 方式1失败:', error);
   }
-  
-  // 方式2: 过滤器查询
-  try {
-    console.log('尝试方式2: 过滤器查询');
-    const data = await fetchAPI(`/projects?filters[id][$eq]=${id}&populate=*`);
-    if (data.data && data.data.length > 0) {
-      console.log('✅ 方式2成功');
-      return data.data[0];
-    }
-  } catch (error) {
-    console.log('❌ 方式2失败:', error);
-  }
-  
-  throw new Error(`未找到项目 ID: ${id}`);
+}
+
+// 获取所有技术文章
+export async function getTechnicalNotes() {
+  const data = await fetchAPI('/technical-notes?populate=*&sort[0]=publishedAt:desc');
+  return data.data;
+}
+
+// 通过 slug 获取单篇文章
+export async function getTechnicalNoteBySlug(slug: string) {
+  const data = await fetchAPI(`/technical-notes?filters[slug][$eq]=${slug}&populate=*`);
+  return data.data[0];
 }
