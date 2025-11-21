@@ -1,56 +1,74 @@
+'use client'
+
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuItems = [
+    { name: '首页', href: '/' },
+    { name: '项目', href: '/projects' },
+    { name: '技术见解', href: '/blog' },
+    { name: '关于我', href: '/about' },
+  ];
+
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-stone-200 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo/姓名 */}
-          <Link 
-            href="/" 
-            className="text-xl font-bold text-stone-800 hover:text-sky-600 transition-colors"
-          >
-            黄豪杰
-          </Link>
-          
-          {/* 桌面端导航链接 */}
-          <div className="hidden md:flex gap-8">
-            <Link 
-              href="/" 
-              className="text-stone-700 hover:text-sky-600 transition-colors font-medium"
-            >
-              首页
-            </Link>
-            <Link 
-              href="/projects" 
-              className="text-stone-700 hover:text-sky-600 transition-colors font-medium"
-            >
-              项目
-            </Link>
-            <Link 
-              href="/blog" 
-              className="text-stone-700 hover:text-sky-600 transition-colors font-medium"
-            >
-              技术见解
-            </Link>
-            <Link 
-              href="/about" 
-              className="text-stone-700 hover:text-sky-600 transition-colors font-medium"
-            >
-              关于我
+    <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-xl border-b border-purple-400/20 shadow-[0_0_20px_rgba(139,92,246,0.1)] z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center">
+            <Link href="/" className="text-2xl font-black gradient-text slide-in-left">
+              Portfolio
             </Link>
           </div>
-
-          {/* 移动端菜单按钮（后续扩展） */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-6">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-lg font-bold text-gray-300 hover:text-cyan-300 px-4 py-2 rounded-xl transition-all duration-300 hover:bg-black/30 zzz-card-hover"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
           <div className="md:hidden">
-            <button className="text-stone-700">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 hover:text-white focus:outline-none focus:text-white"
+            >
+              <svg className="h-8 w-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
               </svg>
             </button>
           </div>
         </div>
       </div>
+
+      {/* 移动端菜单 */}
+      {isOpen && (
+        <div className="md:hidden bg-black/30 backdrop-blur-xl border-t border-purple-400/20">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {menuItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base font-medium hover:bg-black/20 transition-all zzz-card-hover"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
