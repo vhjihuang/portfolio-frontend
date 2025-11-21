@@ -14,7 +14,13 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-xl border-b border-purple-400/20 shadow-[0_0_20px_rgba(139,92,246,0.1)] z-50">
+    <nav className="fixed top-0 w-full z-50" style={{
+      background: 'rgba(17, 24, 39, 0.8)',
+      backdropFilter: 'blur(20px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+      borderBottom: '1px solid rgba(139, 92, 246, 0.2)',
+      boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+    }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
