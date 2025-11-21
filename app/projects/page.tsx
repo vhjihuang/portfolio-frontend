@@ -4,12 +4,11 @@ import Link from 'next/link';
 export default async function ProjectsPage() {
   try {
     const projects = await getProjects();
-    console.log('projects', projects)
 
     return (
-      <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-violet-800 py-12 overflow-hidden">
+      <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-violet-800 py-12 overflow-hidden relative">
         {/* 背景装饰元素 - 增强绝区零风格 */}
-        <div className="absolute inset-0 z-0">
+        <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-3xl animate-float"></div>
           <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-3xl animate-float animation-delay-2000"></div>
           <div className="absolute bottom-1/4 left-1/3 w-[450px] h-[450px] bg-pink-500/5 rounded-full blur-3xl animate-float animation-delay-4000"></div>
@@ -18,7 +17,7 @@ export default async function ProjectsPage() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse-glow"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative" style={{ zIndex: 1 }}>
           {/* 页面标题 - 添加绝区零风格的故障效果 */}
           <div className="text-center mb-16 pt-8 slide-in-top">
             <div className="inline-block relative">
