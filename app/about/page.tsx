@@ -1,4 +1,5 @@
 import { getAbout } from '@/lib/api';
+import Image from 'next/image';
 
 export default async function AboutPage() {
   try {
@@ -40,13 +41,18 @@ export default async function AboutPage() {
                 <div className="md:col-span-1">
                   <div className="text-center">
                     {/* 头像 */}
-                    <div className="w-40 h-40 bg-linear-to-br from-cyan-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center p-1 shadow-[0_0_30px_rgba(139,92,246,0.5)]">
+                    <div className="w-40 h-40 bg-linear-to-br from-cyan-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center p-1 shadow-[0_0_30px_rgba(139,92,246,0.5)] relative">
                       {avatar ? (
-                        <img
-                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${avatar.url}`}
-                          alt={avatar.name}
-                          className="w-full h-full rounded-full object-cover"
-                        />
+                        <div className="w-full h-full rounded-full overflow-hidden relative">
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${avatar.url}`}
+                            alt={about?.name || 'Avatar'}
+                            fill
+                            sizes="160px"
+                            className="object-cover"
+                            priority
+                          />
+                        </div>
                       ) : (
                         <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
                           <span className="text-gray-400 text-3xl font-bold">

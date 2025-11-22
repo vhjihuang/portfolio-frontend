@@ -1,5 +1,6 @@
 import { getProjects, getProjectById } from '@/lib/api';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { renderRichText } from '@/lib/rich-text-renderer'
 
 interface PageProps {
@@ -34,10 +35,13 @@ export default async function ProjectDetailPage({
             {/* 封面图 */}
             {projectData.coverImage?.data && (
               <div className="aspect-video relative overflow-hidden">
-                <img 
+                <Image 
                   src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${projectData.coverImage.data.url}`}
                   alt={projectData.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  className="object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
               </div>

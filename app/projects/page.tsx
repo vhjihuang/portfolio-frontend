@@ -1,5 +1,6 @@
 import { getProjects } from '@/lib/api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function ProjectsPage() {
   try {
@@ -48,10 +49,12 @@ export default async function ProjectsPage() {
                 {/* 项目封面 */}
                 <div className="aspect-video bg-linear-to-br from-gray-800/50 to-black/50 relative overflow-hidden">
                   {project.coverImage ? (
-                    <img 
+                    <Image 
                       src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.coverImage.url}`}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-600">
