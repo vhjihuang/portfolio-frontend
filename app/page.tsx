@@ -13,6 +13,9 @@ export default async function Home() {
     const about = aboutData;
     const skills = skillsData || [];
     const projects = projectsData || [];
+    console.log('about', aboutData)
+    console.log('skills', skillsData)
+    console.log('projects', projectsData)
 
     return (
       <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-violet-800 text-white overflow-x-hidden page-container relative">
