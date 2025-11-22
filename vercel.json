@@ -4,6 +4,6 @@
   "framework": "nextjs",
   "regions": ["hkg1"],
   "env": {
-    "NEXT_PUBLIC_STRAPI_URL": "@strapi-url"
+    "NEXT_PUBLIC_STRAPI_URL": "https://portfolio-cms-production-9ea6.up.railway.app"
   }
 }
