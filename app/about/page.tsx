@@ -41,9 +41,9 @@ export default async function AboutPage() {
                   <div className="text-center">
                     {/* 头像 */}
                     <div className="w-40 h-40 bg-linear-to-br from-cyan-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center p-1 shadow-[0_0_30px_rgba(139,92,246,0.5)]">
-                      {avatar? (
+                      {avatar ? (
                         <img
-                          src={`http://localhost:1337${avatar.url}`}
+                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${avatar.url}`}
                           alt={avatar.name}
                           className="w-full h-full rounded-full object-cover"
                         />
@@ -112,7 +112,7 @@ export default async function AboutPage() {
                   {about?.resume?.data && (
                     <div>
                       <a
-                        href={`http://localhost:1337${about.resume.data.url}`}
+                        href={`${process.env.NEXT_PUBLIC_STRAPI_URL}${about.resume.data.url}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-cyan-600 to-purple-600 text-white rounded-xl font-bold hover:from-cyan-700 hover:to-purple-700 transition-all shadow-[0_0_30px_#00f5ff] hover:shadow-[0_0_50px_#00f5ff]"

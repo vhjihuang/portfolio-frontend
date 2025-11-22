@@ -42,7 +42,7 @@ export default async function BlogPage() {
                     {note.coverImage?.data && (
                       <div className="md:w-64 md:shrink-0 relative overflow-hidden">
                         <img
-                          src={`http://localhost:1337${note.coverImage.data.url}`}
+                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${note.coverImage.data.url}`}
                           alt={note.title}
                           className="w-full h-48 md:h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />

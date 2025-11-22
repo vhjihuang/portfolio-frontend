@@ -35,7 +35,7 @@ export default async function ProjectDetailPage({
             {projectData.coverImage?.data && (
               <div className="aspect-video relative overflow-hidden">
                 <img 
-                  src={`http://localhost:1337${projectData.coverImage.data.url}`}
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${projectData.coverImage.data.url}`}
                   alt={projectData.title}
                   className="w-full h-full object-cover"
                 />
