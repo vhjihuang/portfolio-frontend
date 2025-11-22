@@ -47,9 +47,9 @@ export default async function ProjectsPage() {
                 
                 {/* 项目封面 */}
                 <div className="aspect-video bg-linear-to-br from-gray-800/50 to-black/50 relative overflow-hidden">
-                  {project.coverImage?.data ? (
+                  {project.coverImage ? (
                     <img 
-                      src={`http://localhost:1337${project.coverImage.data.url}`}
+                      src={`http://localhost:1337${project.coverImage.url}`}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />

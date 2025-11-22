@@ -4,6 +4,12 @@ export default async function AboutPage() {
   try {
     const aboutData = await getAbout();
     const about = aboutData;
+    const avatar = {
+      name: aboutData.avatar.name,
+      url: aboutData.avatar.formats.medium.url,
+      alt: aboutData.avatar.alternativeText || aboutData.name
+    };
+    console.log('aboutData', about)
 
     return (
       <div className="min-h-screen bg-linear-to-br from-gray-900 via-purple-900 to-violet-800 py-20 overflow-hidden relative">
@@ -35,10 +41,10 @@ export default async function AboutPage() {
                   <div className="text-center">
                     {/* 头像 */}
                     <div className="w-40 h-40 bg-linear-to-br from-cyan-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center p-1 shadow-[0_0_30px_rgba(139,92,246,0.5)]">
-                      {about?.avatar?.data ? (
-                        <img 
-                          src={`http://localhost:1337${about.avatar.data.url}`}
-                          alt={about.name}
+                      {avatar? (
+                        <img
+                          src={`http://localhost:1337${avatar.url}`}
+                          alt={avatar.name}
                           className="w-full h-full rounded-full object-cover"
                         />
                       ) : (
@@ -49,7 +55,7 @@ export default async function AboutPage() {
                         </div>
                       )}
                     </div>
-                    
+
                     <h2 className="text-2xl font-bold text-white mb-2">{about?.name}</h2>
                     <p className="text-cyan-300 font-bold text-lg mb-3">{about?.jobTitle}</p>
                     <p className="text-gray-300 text-sm">{about?.email}</p>
@@ -73,7 +79,7 @@ export default async function AboutPage() {
                       </h3>
                       <div className="flex flex-wrap gap-3">
                         {about.socialLinks.github && (
-                          <a 
+                          <a
                             href={about.socialLinks.github}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -86,14 +92,14 @@ export default async function AboutPage() {
                           </a>
                         )}
                         {about.socialLinks.linkedin && (
-                          <a 
+                          <a
                             href={about.socialLinks.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-5 py-3 glass-effect-dark text-white rounded-xl font-medium hover:bg-black/50 transition-all border border-purple-400/30"
                           >
                             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
                             LinkedIn
                           </a>
@@ -105,7 +111,7 @@ export default async function AboutPage() {
                   {/* 简历下载 */}
                   {about?.resume?.data && (
                     <div>
-                      <a 
+                      <a
                         href={`http://localhost:1337${about.resume.data.url}`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -136,7 +142,7 @@ export default async function AboutPage() {
           </div>
           <h1 className="text-2xl font-bold text-red-400 mb-2">页面加载失败</h1>
           <p className="text-gray-300 mb-4">请稍后重试或联系网站管理员</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="px-6 py-3 bg-linear-to-r from-cyan-600 to-purple-600 text-white rounded-lg font-semibold hover:from-cyan-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
           >
