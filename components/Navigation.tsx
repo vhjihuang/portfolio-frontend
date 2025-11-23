@@ -8,9 +8,11 @@ export default function Navigation() {
 
   const menuItems = [
     { name: '首页', href: '/' },
+    { name: '服务', href: '/services' },
     { name: '项目', href: '/projects' },
-    { name: '技术见解', href: '/blog' },
-    { name: '关于我', href: '/about' },
+    { name: '博客', href: '/blog' },
+    { name: '关于', href: '/about' },
+    { name: '联系', href: '/contact' },
   ];
 
   return (

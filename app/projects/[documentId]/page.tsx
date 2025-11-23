@@ -1,10 +1,51 @@
 import { getProjects, getProjectById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { renderRichText } from '@/lib/rich-text-renderer'
+import { renderRichText } from '@/lib/rich-text-renderer';
+import { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{ documentId: string }>;
+}
+
+// 生成动态 metadata
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    const { documentId } = await params;
+    const project = await getProjectById(documentId);
+    
+    if (!project) {
+      return {
+        title: '项目未找到',
+      };
+    }
+
+    const imageUrl = project.coverImage?.data?.url 
+      ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${project.coverImage.data.url}`
+      : undefined;
+
+    return {
+      title: `${project.title} - 项目案例`,
+      description: project.description || '查看项目详情',
+      keywords: project.skills?.map((s: any) => s.name).join(', '),
+      openGraph: {
+        title: project.title,
+        description: project.description,
+        images: imageUrl ? [imageUrl] : [],
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: project.title,
+        description: project.description,
+        images: imageUrl ? [imageUrl] : [],
+      },
+    };
+  } catch (error) {
+    return {
+      title: '项目详情',
+    };
+  }
 }
 
 export default async function ProjectDetailPage({ 

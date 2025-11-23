@@ -1,10 +1,47 @@
 import { getTechnicalNoteBySlug } from '@/lib/api';
 import { renderRichText } from '@/lib/rich-text-renderer';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-export default async function BlogDetailPage(props: {
+interface PageProps {
   params: Promise<{ slug: string }>;
-}) {
+}
+
+// 生成动态 metadata
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    const { slug } = await params;
+    const note = await getTechnicalNoteBySlug(slug);
+    
+    if (!note) {
+      return {
+        title: '文章未找到',
+      };
+    }
+
+    return {
+      title: `${note.title} - 技术博客`,
+      description: note.content?.substring(0, 160) || '查看文章详情',
+      openGraph: {
+        title: note.title,
+        description: note.content?.substring(0, 160),
+        type: 'article',
+        publishedTime: note.publishedAt,
+      },
+      twitter: {
+        card: 'summary',
+        title: note.title,
+        description: note.content?.substring(0, 160),
+      },
+    };
+  } catch (error) {
+    return {
+      title: '文章详情',
+    };
+  }
+}
+
+export default async function BlogDetailPage(props: PageProps) {
   const params = await props.params;
   const slug = params.slug;
 

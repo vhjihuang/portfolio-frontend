@@ -54,3 +54,21 @@ export async function getTechnicalNoteBySlug(slug: string) {
   const data = await fetchAPI(`/technical-notes?filters[slug][$eq]=${slug}&populate=*`);
   return data.data[0];
 }
+
+// 获取所有服务
+export async function getServices() {
+  const data = await fetchAPI('/services?sort[0]=order:asc');
+  return data.data;
+}
+
+// 获取所有 FAQ
+export async function getFaqs() {
+  const data = await fetchAPI('/faqs?sort[0]=order:asc');
+  return data.data;
+}
+
+// 获取联系信息
+export async function getContactInfo() {
+  const data = await fetchAPI('/contact-info?populate=*');
+  return data.data;
+}
