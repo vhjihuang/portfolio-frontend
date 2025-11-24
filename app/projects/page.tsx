@@ -15,7 +15,7 @@ export default async function ProjectsPage() {
           <div className="absolute bottom-1/4 left-1/3 w-[450px] h-[450px] bg-pink-500/5 rounded-full blur-3xl animate-float animation-delay-4000"></div>
           
           {/* 添加类似绝区零的故障效果元素 */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse-glow"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-linear-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse-glow"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 relative" style={{ zIndex: 1 }}>

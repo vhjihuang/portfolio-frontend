@@ -26,7 +26,7 @@ export default function FAQPage() {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/faqs?sort[0]=order:asc`);
         const data = await response.json();
-        
+
         // 按分类组织数据
         const categorized: Record<string, FAQ[]> = {};
         data.data.forEach((item: any) => {
@@ -157,9 +157,8 @@ export default function FAQPage() {
                           <span className="text-white font-medium pr-4">{item.question}</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className={`h-6 w-6 text-cyan-400 shrink-0 transition-transform duration-300 ${
-                              isOpen ? 'rotate-180' : ''
-                            }`}
+                            className={`h-6 w-6 text-cyan-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                              }`}
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -170,9 +169,8 @@ export default function FAQPage() {
 
                         {/* 答案 */}
                         <div
-                          className={`overflow-hidden transition-all duration-300 ${
-                            isOpen ? 'max-h-96' : 'max-h-0'
-                          }`}
+                          className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'
+                            }`}
                         >
                           <div className="px-6 pb-5 pt-2 text-gray-300 leading-relaxed border-t border-purple-400/20">
                             {item.answer}

@@ -11,6 +11,7 @@ export default function Navigation() {
     { name: '服务', href: '/services' },
     { name: '项目', href: '/projects' },
     { name: '博客', href: '/blog' },
+    { name: 'FAQ', href: '/faq' },
     { name: '关于', href: '/about' },
     { name: '联系', href: '/contact' },
   ];

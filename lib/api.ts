@@ -69,6 +69,21 @@ export async function getFaqs() {
 
 // 获取联系信息
 export async function getContactInfo() {
-  const data = await fetchAPI('/contact-info?populate=*');
-  return data.data;
+  // Single Type 的 API 路径可能不同，尝试多种方式
+  try {
+    // 尝试方式1: contact-info
+    const data = await fetchAPI('/contact-info?populate=*');
+    return data.data;
+  } catch (error) {
+    console.log('尝试 contact-info 失败，尝试其他路径');
+    try {
+      // 尝试方式2: contact-infos (复数)
+      const data = await fetchAPI('/contact-infos?populate=*');
+      return data.data;
+    } catch (error2) {
+      console.log('尝试 contact-infos 失败');
+      // 返回 null，让前端使用默认值
+      return null;
+    }
+  }
 }
