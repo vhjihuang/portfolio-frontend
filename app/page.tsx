@@ -240,18 +240,70 @@ export default async function Home() {
 
         {/* 个人理念展示区域 */}
         <section className="py-24 px-4">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20 fade-in-up">
               <h2 className="text-3xl md:text-5xl font-black text-white mb-4">我的理念</h2>
               <div className="w-24 h-1 bg-linear-to-r from-cyan-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+              <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+                技术与艺术的完美融合，创造有温度的数字体验
+              </p>
             </div>
 
+            {/* 多维度理念展示 */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              {/* 价值观卡片 */}
+              <div className="fade-in-up" style={{ animationDelay: '0ms' }}>
+                <div className="glass-effect-dark rounded-3xl p-8 shadow-[0_0_30px_rgba(139,92,246,0.2)] hover:shadow-[0_0_40px_rgba(139,92,246,0.3)] transition-all duration-500 group h-full">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">🎨</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">用户体验优先</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      每个像素都经过精心设计，追求极致的用户交互体验，让技术服务于人的需求
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 方法论卡片 */}
+              <div className="fade-in-up" style={{ animationDelay: '100ms' }}>
+                <div className="glass-effect-dark rounded-3xl p-8 shadow-[0_0_30px_rgba(139,92,246,0.2)] hover:shadow-[0_0_40px_rgba(139,92,246,0.3)] transition-all duration-500 group h-full">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-linear-to-br from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">🔧</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">工程化思维</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      注重代码质量、可维护性和团队协作，构建稳定可靠的系统架构
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 创新卡片 */}
+              <div className="fade-in-up" style={{ animationDelay: '200ms' }}>
+                <div className="glass-effect-dark rounded-3xl p-8 shadow-[0_0_30px_rgba(139,92,246,0.2)] hover:shadow-[0_0_40px_rgba(139,92,246,0.3)] transition-all duration-500 group h-full">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-linear-to-br from-violet-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">🚀</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">持续创新</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      拥抱新技术，不断探索最佳实践，为客户提供前沿的解决方案
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 核心理念总结 */}
             <div className="fade-in-up">
               <div className="glass-effect-dark rounded-3xl p-10 md:p-12 shadow-[0_0_30px_rgba(139,92,246,0.2)] hover:shadow-[0_0_50px_rgba(139,92,246,0.4)] transition-all duration-500 group">
                 <div className="flex items-start gap-6">
                   <div className="shrink-0 w-1 h-24 bg-linear-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full"></div>
                   <p className="text-gray-100 text-xl md:text-2xl leading-relaxed font-light">
-                    {about?.description || "四年打磨用户体验，如今专注全栈开发。我相信优秀的代码不仅功能完善，更应该具有美感和可维护性。"}
+                    {about?.description || "从用户体验设计师到全栈开发者，四年的跨界探索让我深刻理解：优秀的产品需要技术与艺术的完美融合。我致力于将复杂的技术转化为简单优雅的解决方案，让每一行代码都充满温度与美感。"}
                   </p>
                 </div>
               </div>
@@ -305,13 +357,13 @@ export default async function Home() {
                   >
                     <div className={`relative glass-effect-dark rounded-3xl p-8 shadow-lg hover:shadow-[0_0_40px_rgba(139,92,246,0.4)] transition-all duration-500 hover:scale-105 zzz-card-hover overflow-hidden border border-purple-400/10`}>
                       {/* 背景渐变装饰 */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                      <div className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
                       {/* 内容 */}
                       <div className="relative z-10">
                         {/* 图标装饰 */}
                         <div className="flex items-center justify-between mb-4">
-                          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${iconColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
+                          <div className={`w-12 h-12 rounded-2xl bg-linear-to-br ${iconColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
                             {skill.icon?.url ? (
                               <Image
                                 src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${skill.icon.url}`}
@@ -374,7 +426,7 @@ export default async function Home() {
                       </div>
 
                       {/* 悬停时的光效 */}
-                      <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-br from-cyan-500/0 to-purple-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-linear-to-br from-cyan-500/0 to-purple-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                   </div>
                 );
