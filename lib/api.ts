@@ -17,7 +17,7 @@ export async function getAbout() {
 }
 
 export async function getSkills() {
-  const data = await fetchAPI('/skills');
+  const data = await fetchAPI('/skills?populate=*');
   return data.data;
 }
 
