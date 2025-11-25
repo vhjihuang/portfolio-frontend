@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   // 标题：包含姓名、职称、技术栈、求职状态
@@ -75,8 +76,9 @@ export default function RootLayout({
       <body className="antialiased">
         <Navigation />
         <main className="pt-16">
-        {children}
+          {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

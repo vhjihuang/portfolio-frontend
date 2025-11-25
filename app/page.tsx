@@ -32,62 +32,122 @@ export default async function Home() {
         </div>
 
         {/* 主页首屏区域 - 优化高度 */}
-        <section className="h-[85vh] flex items-center justify-center px-4 py-12 relative overflow-hidden">
-          <div className="text-center max-w-4xl relative" style={{ zIndex: 1 }}>
+        <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
+          <div className="text-center max-w-5xl relative" style={{ zIndex: 1 }}>
             {/* 品牌化的主标题区域 */}
-            <div className="mb-12 hero-content">
-              <div className="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-linear-to-br from-cyan-500 to-purple-600 shadow-2xl mb-6 transform rotate-3 hover:rotate-6 transition-transform duration-500 animate-pulse-glow">
-                <span className="text-4xl font-bold text-white drop-shadow-lg">
-                  {about?.name?.split(' ').map((n: string) => n[0]).join('') || 'D'}
-                </span>
-              </div>
-
-              <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight hero-content gradient-text">
-                <span className="block mb-2">
+            <div className="mb-8 hero-content space-y-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
+                <span className="block gradient-text mb-3">
                   {about?.name || '开发者姓名'}
                 </span>
-                <span className="block text-lg md:text-xl font-light text-gray-300 mt-2 hero-content">
+                <span className="block text-2xl md:text-3xl lg:text-4xl text-gray-300 font-normal">
                   {about?.jobTitle || '全栈开发者'}
                 </span>
               </h1>
 
-              <div className="inline-block px-6 py-3 glass-effect-dark rounded-2xl shadow-lg mb-8 hero-content">
-                <span className="text-base md:text-lg font-medium text-white">
-                  {about?.tagline || '创造卓越的数字体验'}
-                </span>
-              </div>
+              <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                {about?.tagline || '创造卓越的数字体验'}
+              </p>
             </div>
 
-            {/* 行动号召按钮 */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center hero-content mb-12">
+            {/* 数据展示 - 优化版 */}
+            {about?.stats && (
+              <div className="mb-10 hero-content">
+                <div className="glass-effect-dark rounded-3xl p-8 md:p-10 max-w-4xl mx-auto shadow-[0_0_40px_rgba(139,92,246,0.3)]">
+                  <div className="grid grid-cols-3 gap-8 md:gap-12">
+                    {about.stats.experience && (
+                      <div className="text-center">
+                        <div className="text-4xl md:text-6xl font-black gradient-text mb-2">
+                          {about.stats.experience}
+                        </div>
+                        <div className="text-gray-400 text-sm md:text-base">年经验</div>
+                      </div>
+                    )}
+                    {about.stats.projects && (
+                      <div className="text-center border-x border-purple-400/20">
+                        <div className="text-4xl md:text-6xl font-black gradient-text mb-2">
+                          {about.stats.projects}
+                        </div>
+                        <div className="text-gray-400 text-sm md:text-base">完成项目</div>
+                      </div>
+                    )}
+                    {about.stats.satisfaction && (
+                      <div className="text-center">
+                        <div className="text-4xl md:text-6xl font-black gradient-text mb-2">
+                          {about.stats.satisfaction}
+                        </div>
+                        <div className="text-gray-400 text-sm md:text-base">客户满意度</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 技术栈展示 - 视觉焦点 */}
+            {skills && skills.length > 0 && (
+              <div className="mb-10 hero-content">
+                <p className="text-sm text-gray-500 mb-4 uppercase tracking-wider">技术栈</p>
+                <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
+                  {skills.slice(0, 8).map((skill: any) => (
+                    <span
+                      key={skill.id}
+                      className="px-4 py-2 glass-effect text-gray-300 rounded-full text-sm font-medium hover:bg-cyan-500/10 hover:text-cyan-300 transition-all"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 行动号召按钮 - 优化版 */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center hero-content mb-6">
               <Link
                 href="/projects"
-                className="px-8 py-4 bg-linear-to-r from-cyan-600 to-purple-600 text-white rounded-2xl font-bold hover:from-cyan-700 hover:to-purple-700 transition-all text-center shadow-[0_0_30px_#00f5ff] hover:shadow-[0_0_50px_#00f5ff] transform hover:-translate-y-1 flex items-center justify-center gap-2 group text-base zzz-card-hover"
+                className="px-10 py-5 bg-linear-to-r from-cyan-600 to-purple-600 text-white rounded-2xl font-bold hover:from-cyan-700 hover:to-purple-700 transition-all text-center shadow-[0_0_30px_#00f5ff] hover:shadow-[0_0_50px_#00f5ff] transform hover:-translate-y-1 flex items-center justify-center gap-2 group text-lg zzz-card-hover"
               >
+                查看作品案例
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-                探索我的项目
               </Link>
               <Link
-                href="/about"
-                className="px-8 py-4 glass-effect-dark text-white rounded-2xl font-bold hover:bg-black/50 transition-all shadow-lg flex items-center justify-center gap-2 group text-base zzz-card-hover"
+                href="/contact"
+                className="px-10 py-5 glass-effect-dark text-white rounded-2xl font-bold hover:bg-black/50 transition-all shadow-lg flex items-center justify-center gap-2 group text-lg zzz-card-hover border border-purple-400/30"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:-translate-y-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                免费咨询
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                了解更多
               </Link>
             </div>
 
-            {/* 向下滚动指示器 */}
-            <div className="hero-content animate-bounce">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
+
           </div>
         </section>
+
+        {/* 核心价值区域 - 独立展示 */}
+        {about?.coreValues && about.coreValues.length > 0 && (
+          <section className="py-20 px-4 scroll-animate">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in-up">
+                {about.coreValues.map((value: any, i: number) => (
+                  <div
+                    key={i}
+                    className="glass-effect-dark rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(139,92,246,0.2)] hover:shadow-[0_0_50px_rgba(139,92,246,0.4)]"
+                    style={{ animationDelay: `${i * 100}ms` }}
+                  >
+                    <div className="text-5xl mb-4">{value.icon}</div>
+                    <h3 className="text-2xl font-bold text-white mb-3">{value.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{value.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 项目展示区域 - 2列大卡片布局 */}
         <section className="py-24 px-4 scroll-animate">
@@ -201,7 +261,7 @@ export default async function Home() {
 
         {/* 技能展示区域 */}
         <section className="py-24 px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20 fade-in-up">
               <h2 className="text-3xl md:text-5xl font-black text-white mb-4">技术专长</h2>
               <div className="w-24 h-1 bg-linear-to-r from-cyan-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
@@ -210,23 +270,131 @@ export default async function Home() {
               </p>
             </div>
 
-            {/* 技能网格 - 更大的卡片 */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {skills.slice(0, 12).map((skill: any, index: number) => (
-                <div
-                  key={skill.id}
-                  className="group relative fade-in-up"
-                  style={{
-                    animationDelay: `${index * 50}ms`
-                  }}
-                >
-                  <div className="px-6 py-5 glass-effect-dark rounded-2xl text-white shadow-lg hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] transition-all duration-300 hover:scale-105 zzz-card-hover text-center">
-                    <div className="w-2 h-2 rounded-full bg-linear-to-br from-cyan-400 to-purple-500 mx-auto mb-3"></div>
-                    <span className="font-bold text-base block">{skill.name}</span>
+            {/* 技能网格 - 优化版大卡片 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {skills.slice(0, 9).map((skill: any, index: number) => {
+                // 根据索引分配不同的渐变色
+                const gradients = [
+                  'from-cyan-500/20 to-blue-500/20',
+                  'from-purple-500/20 to-pink-500/20',
+                  'from-violet-500/20 to-purple-500/20',
+                  'from-blue-500/20 to-cyan-500/20',
+                  'from-pink-500/20 to-rose-500/20',
+                  'from-indigo-500/20 to-purple-500/20',
+                ];
+                const gradient = gradients[index % gradients.length];
+
+                // 根据索引分配图标颜色
+                const iconColors = [
+                  'from-cyan-400 to-blue-400',
+                  'from-purple-400 to-pink-400',
+                  'from-violet-400 to-purple-400',
+                  'from-blue-400 to-cyan-400',
+                  'from-pink-400 to-rose-400',
+                  'from-indigo-400 to-purple-400',
+                ];
+                const iconColor = iconColors[index % iconColors.length];
+
+                return (
+                  <div
+                    key={skill.id}
+                    className="group relative fade-in-up"
+                    style={{
+                      animationDelay: `${index * 50}ms`
+                    }}
+                  >
+                    <div className={`relative glass-effect-dark rounded-3xl p-8 shadow-lg hover:shadow-[0_0_40px_rgba(139,92,246,0.4)] transition-all duration-500 hover:scale-105 zzz-card-hover overflow-hidden border border-purple-400/10`}>
+                      {/* 背景渐变装饰 */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                      {/* 内容 */}
+                      <div className="relative z-10">
+                        {/* 图标装饰 */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${iconColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
+                            {skill.icon?.url ? (
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${skill.icon.url}`}
+                                alt={skill.name}
+                                width={32}
+                                height={32}
+                                className="object-contain"
+                              />
+                            ) : skill.iconEmoji ? (
+                              <span className="text-2xl">{skill.iconEmoji}</span>
+                            ) : (
+                              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                              </svg>
+                            )}
+                          </div>
+
+                          {/* 熟练度指示器 */}
+                          {skill.proficiency && (
+                            <div className="flex gap-1">
+                              {[...Array(5)].map((_, i) => (
+                                <div
+                                  key={i}
+                                  className={`w-1.5 h-6 rounded-full transition-all duration-300 ${i < Math.ceil((skill.proficiency / 100) * 5)
+                                    ? `bg-gradient-to-t ${iconColor} shadow-lg`
+                                    : 'bg-gray-700'
+                                    }`}
+                                ></div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* 技能名称 */}
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                          {skill.name}
+                        </h3>
+
+                        {/* 技能描述或分类 */}
+                        {skill.category && (
+                          <p className="text-sm text-gray-400 mb-3">
+                            {skill.category}
+                          </p>
+                        )}
+
+                        {/* 经验年限或其他信息 */}
+                        {skill.yearsOfExperience && (
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>{skill.yearsOfExperience} 年经验</span>
+                          </div>
+                        )}
+
+                        {/* 如果没有额外信息，显示简单的装饰线 */}
+                        {!skill.category && !skill.yearsOfExperience && (
+                          <div className={`w-16 h-1 bg-gradient-to-r ${iconColor} rounded-full mt-3 group-hover:w-full transition-all duration-500`}></div>
+                        )}
+                      </div>
+
+                      {/* 悬停时的光效 */}
+                      <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-br from-cyan-500/0 to-purple-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+
+            {/* 如果技能很多，可以添加"查看更多"按钮 */}
+            {skills.length > 9 && (
+              <div className="text-center mt-12 fade-in-up">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 px-8 py-4 glass-effect-dark text-white rounded-2xl font-bold hover:bg-black/50 transition-all shadow-lg group border border-purple-400/30"
+                >
+                  查看完整技能列表 ({skills.length} 项技能)
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              </div>
+            )}
           </div>
         </section>
       </div>
